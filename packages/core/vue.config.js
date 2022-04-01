@@ -1,8 +1,6 @@
 const { defineConfig } = require('@vue/cli-service');
-const { name } = require('./package.json');
 const { resolve } = require('path');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 const productionGzipExtensions = ['js', 'css'];
 module.exports = defineConfig({
   devServer: {
@@ -12,6 +10,7 @@ module.exports = defineConfig({
   },
   css: {
     loaderOptions: {
+      // 自定义主题
       scss: {
         // eslint-disable-next-line quotes
         additionalData: `@use '@/styles/variables.scss' as *;`,
@@ -19,17 +18,13 @@ module.exports = defineConfig({
     },
   },
   chainWebpack: (config) => {
-    config.resolve.alias.set('@', resolve('src'));
+    config.resolve.alias.set('@', resolve('./src/'));
   },
   configureWebpack: {
     devtool: 'source-map',
-    output: {
-      library: `${name}-[name]`,
-      libraryTarget: 'umd',
-      chunkLoadingGlobal: `webpackJsonp_${name}`,
-    },
     plugins: [
       require('unplugin-element-plus/webpack')({
+        // options
         useSource: true,
       }),
       new CompressionWebpackPlugin({
@@ -40,22 +35,5 @@ module.exports = defineConfig({
         minRatio: 0.8,
       }),
     ],
-    optimization: {
-      minimize: true,
-      minimizer: [
-        new TerserPlugin({
-          terserOptions: {
-            ecma: undefined,
-            warnings: false,
-            parse: {},
-            compress: {
-              drop_debugger: true,
-              drop_console: true,
-              pure_funcs: ['console.log'],
-            },
-          },
-        }),
-      ],
-    },
   },
 });

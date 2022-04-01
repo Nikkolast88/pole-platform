@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+body,html{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/** 全局icon样式 */
+.icon-anticon {
+  display: inline-block;
+
+  .i-icon {
+    display: inline-block;
+  }
+
+  svg {
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
