@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunk_pole_business"]=self["webpackChunk_pole_business"]||[]).push([[443],{112:function(n,s,e){e.r(s),e.d(s,{default:function(){return b}});var u=e(416);const t={class:"about"},a=(0,u._)("h1",null,"This is an about page",-1),r=[a];function i(n,s){return(0,u.wg)(),(0,u.iD)("div",t,r)}var c=e(491);const o={},l=(0,c.Z)(o,[["render",i]]);var b=l}}]);
+//# sourceMappingURL=about.0b47350a.js.map
