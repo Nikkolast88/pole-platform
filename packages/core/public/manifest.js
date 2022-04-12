@@ -6,9 +6,9 @@ window.manifest = {
   APPS: [
     // 子应用
     {
-      name: 'micro-sub',
+      name: '@pole-platform/business',
       entry: '//localhost:8081',
-      container: '#app',
+      container: '#container',
       activeRule: '/micro-sub',
     },
   ],

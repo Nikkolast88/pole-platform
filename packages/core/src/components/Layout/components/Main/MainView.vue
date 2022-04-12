@@ -15,9 +15,7 @@
         <div class="page-content">
           <div class="page-content-children">
             <div class="page-content-wrap">
-              <slot>
-                <router-view></router-view>
-              </slot>
+              <slot> </slot>
             </div>
           </div>
         </div>
@@ -36,9 +34,7 @@
         <div class="page-content">
           <div class="page-content-children">
             <div class="page-content-wrap">
-              <slot>
-                <router-view></router-view>
-              </slot>
+              <slot> </slot>
             </div>
           </div>
         </div>

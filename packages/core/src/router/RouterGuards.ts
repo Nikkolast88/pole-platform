@@ -8,12 +8,14 @@ const childrenPath = window.manifest.APPS.map((el) => el.activeRule);
 export function createRouterGuards(router: Router): void {
   // 路由进入前
   router.beforeEach(async (to, form, next) => {
-    if (to.name) {
+    if (!history.state.current) {
+      Object.assign(history.state, { current: form.fullPath });
+    } else if (to.name) {
       next();
-    }
-    if (childrenPath.some((item) => to.path.includes(item))) {
+    } else if (childrenPath.some((item) => to.path.includes(item))) {
       next();
+    } else {
+      next('/404');
     }
-    next('/404');
   });
 }

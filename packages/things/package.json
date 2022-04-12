@@ -1,5 +1,5 @@
 {
-  "name": "@pole/things",
+  "name": "@pole-platform/things",
   "version": "0.0.1",
   "description": "物联平台",
   "main": "index.js",

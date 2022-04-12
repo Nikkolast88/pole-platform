@@ -1,4 +1,4 @@
-import { ElMessage, ElMessageBox } from 'src/typings/element-plus';
+import { ElMessage, ElMessageBox } from 'element-plus';
 declare module '@vue/runtime-core' {
   export interface ComponentCustomProperties {
     $message: typeof ElMessage;

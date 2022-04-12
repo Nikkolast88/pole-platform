@@ -1,6 +1,10 @@
-import { createApp } from 'vue';
-import App from './App.vue';
-import router from './router';
-import { start } from 'qiankun';
-start();
-createApp(App).use(router).mount('#app');
+import './public-path';
+
+import { lifeCycle } from '@/plugins';
+import { SingleApp } from './plugins/modules/SingleApp';
+
+const { bootstrap, mount, unmount } = lifeCycle();
+export { bootstrap, mount, unmount };
+// lifeCycle();
+const __qiankun__ = window.__POWERED_BY_QIANKUN__;
+__qiankun__ || SingleApp();

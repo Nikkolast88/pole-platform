@@ -25,5 +25,9 @@ const constantRouter: Array<RouteRecordRaw> = [
     },
   },
 ];
-export const Layout = () => import('@/components/Layout/index.vue');
+/**
+ * 只给vue-router使用,布局组件需要 () => import('@/views/Layout/LayoutComp.vue')
+ * @returns {Array<RouteRecordRaw>}
+ */
+export const Layout = () => import('@/components/Layout/LayoutComp.vue');
 export { constantRouter };

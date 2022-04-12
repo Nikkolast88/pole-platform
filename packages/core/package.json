@@ -1,6 +1,7 @@
 {
-  "name": "@pole/core",
+  "name": "@pole-platform/core",
   "version": "0.1.0",
+  "description": "主应用",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",

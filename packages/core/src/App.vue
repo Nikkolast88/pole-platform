@@ -5,7 +5,7 @@
     </template>
     <template v-else>
       <Layout>
-        <div id="app"></div>
+        <div id="container"></div>
       </Layout>
     </template>
   </el-config-provider>
@@ -14,7 +14,7 @@
 import { computed } from 'vue';
 import { ElConfigProvider } from 'element-plus';
 import zhCn from 'element-plus/lib/locale/lang/zh-cn';
-import { Layout } from '@/router/constantRouter';
+import { Layout } from '@/components/Layout';
 import { useRoute } from 'vue-router';
 
 const locale = zhCn;

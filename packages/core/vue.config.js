@@ -3,6 +3,7 @@ const { resolve } = require('path');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const productionGzipExtensions = ['js', 'css'];
 module.exports = defineConfig({
+  publicPath: '.',
   devServer: {
     headers: {
       'Access-Control-Allow-Origin': '*',
@@ -19,6 +20,7 @@ module.exports = defineConfig({
   },
   chainWebpack: (config) => {
     config.resolve.alias.set('@', resolve('./src/'));
+    config.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.cjs.js');
   },
   configureWebpack: {
     devtool: 'source-map',
