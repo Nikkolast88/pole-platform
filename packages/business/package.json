@@ -1,6 +1,6 @@
 {
   "name": "@pole-platform/business",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "业务平台",
   "scripts": {
     "serve": "vue-cli-service serve",
