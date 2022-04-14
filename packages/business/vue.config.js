@@ -4,8 +4,11 @@ const { resolve } = require('path');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const productionGzipExtensions = ['js', 'css'];
+// console.log(process.env.VUE_APP_PUBLIC_PATH);
+// process.env.VUE_APP_PUBLIC_PATH = './';
+console.log(process.env.VUE_APP_PUBLIC_PATH);
 module.exports = defineConfig({
-  publicPath: '.',
+  publicPath: process.env.VUE_APP_PUBLIC_PATH,
   devServer: {
     headers: {
       'Access-Control-Allow-Origin': '*',

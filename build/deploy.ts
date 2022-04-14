@@ -1,5 +1,6 @@
 import fg from 'fast-glob';
 // import rimraf from 'rimraf';
+import path from 'path';
 import { execSync } from 'child_process';
 import fs from 'fs-extra';
 export const readMetadata = async () => {
@@ -24,22 +25,42 @@ interface answerMeta {
 }
 export const setupDeploy = async (answer: answerMeta) => {
   console.log('deploy', answer);
-  const { root, needs } = answer;
+  const { root, needs, dir } = answer;
+  /** 排除主应用后，获取需要打包的应用 */
   const dirs = needs.filter((item) => item !== answer.main);
   // const packages = await readMetadata();
-  // for (const name of packages) {
-  //   console.log(name);
-  //   const output = execSync('pnpm run build', {
-  //     stdio: 'inherit',
-  //     cwd: path.join('packages', name),
-  //   });
-  //   console.log(output.toString());
-  // }
+  process.env.VUE_APP_PUBLIC_PATH = dir ? `/${dir}/` : '/';
+  /** 如果根目录存在则删除 */
   if (fs.existsSync(root)) {
-    execSync(`rm -rf ${root}`);
+    fs.removeSync(root);
   }
-  execSync(`mkdir ${root}`);
+  fs.mkdirSync(root);
+  /** 如果需要打包的应用中包含主应用则进行打包 */
+  if (needs.includes(answer.main)) {
+    execSync('pnpm run build', {
+      stdio: 'inherit',
+      cwd: path.join('packages', answer.main),
+    });
+    fs.copySync(`packages/${answer.main}/dist`, root);
+  }
+  for (const name of dirs) {
+    execSync('pnpm run build', {
+      stdio: 'inherit',
+      cwd: path.join('packages', name),
+    });
+  }
+  /** 创建二级目录 */
+  if (dir) {
+    fs.mkdirSync(`${root}/${dir}`);
+  }
+  /** 创建子应用目录 */
   for (const need of dirs) {
-    execSync(`cd ${root} & mkdir ${need}`);
+    if (dir) {
+      fs.mkdirSync(`${root}/${dir}/${need}`);
+      fs.copySync(`packages/${need}/dist`, `${root}/${dir}/${need}`);
+    } else {
+      fs.mkdirSync(`${root}/${need}`);
+      fs.copySync(`packages/${need}/dist`, `${root}/${need}`);
+    }
   }
 };

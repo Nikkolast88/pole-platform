@@ -2,8 +2,9 @@ const { defineConfig } = require('@vue/cli-service');
 const { resolve } = require('path');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const productionGzipExtensions = ['js', 'css'];
+console.log(process.env.VUE_APP_PUBLIC_PATH);
 module.exports = defineConfig({
-  publicPath: '.',
+  publicPath: '/',
   devServer: {
     headers: {
       'Access-Control-Allow-Origin': '*',
