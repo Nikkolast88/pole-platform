@@ -29,7 +29,6 @@ export const setupDeploy = async (answer: answerMeta) => {
   /** 排除主应用后，获取需要打包的应用 */
   const dirs = needs.filter((item) => item !== answer.main);
   // const packages = await readMetadata();
-  process.env.VUE_APP_PUBLIC_PATH = dir ? `/${dir}/` : '/';
   /** 如果根目录存在则删除 */
   if (fs.existsSync(root)) {
     fs.removeSync(root);
@@ -44,6 +43,7 @@ export const setupDeploy = async (answer: answerMeta) => {
     fs.copySync(`packages/${answer.main}/dist`, root);
   }
   for (const name of dirs) {
+    process.env.VUE_APP_PUBLIC_PATH = dir ? `/${dir}/${name}` : '/';
     execSync('pnpm run build', {
       stdio: 'inherit',
       cwd: path.join('packages', name),

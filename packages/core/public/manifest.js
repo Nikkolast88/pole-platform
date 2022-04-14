@@ -11,5 +11,11 @@ window.manifest = {
       container: '#container',
       activeRule: '/micro-sub',
     },
+    {
+      name: '@pole-platform/things',
+      entry: '//localhost:8082',
+      container: '#container',
+      activeRule: '/micro-sub',
+    },
   ],
 };

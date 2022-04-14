@@ -1,0 +1,14 @@
+{
+  "name": "@pole-platform/things",
+  "version": "0.1.1",
+  "description": "物联平台",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-typescript": "~5.0.4",
+    "@vue/cli-service": "~5.0.4"
+  }
+}

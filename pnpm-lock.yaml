@@ -132,7 +132,12 @@ importers:
       '@vue/cli-service': 5.0.4_sass-loader@12.6.0
 
   packages/things:
-    specifiers: {}
+    specifiers:
+      '@vue/cli-plugin-typescript': ~5.0.4
+      '@vue/cli-service': ~5.0.4
+    devDependencies:
+      '@vue/cli-plugin-typescript': 5.0.4_c28833e5cc67062f05adc44811c0596b
+      '@vue/cli-service': 5.0.4_sass-loader@12.6.0
 
 packages:
 
