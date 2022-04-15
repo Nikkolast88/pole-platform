@@ -11,9 +11,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint:stylelint": "stylelint --fix \"**/*.{vue,less,postcss,scss}\" --cache --cache-location node_modules/.cache/stylelint/",
     "prepare": "husky install",
-    "commit": "git add . && git-cz",
+    "commit": "set NODE_ENV=commit&&git add . && git-cz",
     "release": "standard-version",
-    "build": "esno ./build/build.ts create"
+    "build": "esno ./scripts/build.ts create"
   },
   "main": "index.js",
   "dependencies": {
