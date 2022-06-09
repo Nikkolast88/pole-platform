@@ -6,12 +6,12 @@ import { createRouterGuards } from './RouterGuards';
 const __qiankun__ = window.__POWERED_BY_QIANKUN__;
 const modules = require.context('./modules', true, /\.ts$/);
 
-const routeModules: RouteRecordRaw[] = [];
+const routeModuleList: RouteRecordRaw[] = [];
 
 modules.keys().forEach((key: string) => {
   const mod = modules(key).default || {};
   const modList = Array.isArray(mod) ? [...mod] : [mod];
-  routeModules.push(...modList);
+  routeModuleList.push(...modList);
 });
 
 export function setupRouter(
@@ -23,7 +23,7 @@ export function setupRouter(
     {
       path: '/',
       name: 'Index',
-      component: () => import('@/views/System/SystemView.vue'),
+      component: () => import('@/views/Index/IndexView.vue'),
     },
     {
       path: '/:pathMatch(.*)*',
@@ -33,7 +33,7 @@ export function setupRouter(
   ];
   const router = createRouter({
     history,
-    routes: __qiankun__ ? constantRouter || [] : constantRouter,
+    routes: [...constantRouter, ...routeModuleList],
   });
   app.use(router);
   /**

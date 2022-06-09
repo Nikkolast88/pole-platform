@@ -9,13 +9,13 @@ window.manifest = {
       name: '@pole-platform/business',
       entry: '//localhost:8081',
       container: '#container',
-      activeRule: '/micro-sub',
+      activeRule: '/business/',
     },
-    {
-      name: '@pole-platform/things',
-      entry: '//localhost:8082',
-      container: '#container',
-      activeRule: '/micro-sub',
-    },
+    // {
+    //   name: '@pole-platform/things',
+    //   entry: '//localhost:8082',
+    //   container: '#container',
+    //   activeRule: '/things',
+    // },
   ],
 };

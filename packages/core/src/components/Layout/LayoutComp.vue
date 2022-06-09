@@ -4,21 +4,30 @@
     <template v-if="defaultSettings.layout === 'side'">
       <section class="layout-has-sider">
         <AsideMenu></AsideMenu>
-        <MainView><slot></slot></MainView>
+        <MainView>
+          <router-view></router-view>
+          <div id="container"></div>
+        </MainView>
       </section>
     </template>
     <!-- 顶部布局 -->
     <template v-if="defaultSettings.layout === 'top'">
       <section class="layout-has-header">
         <PageHeader></PageHeader>
-        <MainView><slot></slot></MainView>
+        <MainView>
+          <router-view></router-view>
+          <div id="container"></div>
+        </MainView>
       </section>
     </template>
     <!-- 混合布局 -->
     <template v-if="defaultSettings.layout === 'mix'">
       <section class="layout-has-sider">
         <AsideMenu></AsideMenu>
-        <MainView><slot></slot></MainView>
+        <MainView>
+          <router-view></router-view>
+          <div id="container"></div>
+        </MainView>
       </section>
     </template>
   </div>

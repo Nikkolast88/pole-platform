@@ -8,6 +8,7 @@ const productionGzipExtensions = ['js', 'css'];
 module.exports = defineConfig({
   publicPath: process.env.VUE_APP_PUBLIC_PATH,
   devServer: {
+    port: 8081,
     headers: {
       'Access-Control-Allow-Origin': '*',
     },

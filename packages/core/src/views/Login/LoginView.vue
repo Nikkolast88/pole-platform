@@ -88,10 +88,10 @@ import Lang from '@/components/Lang/LangComponent.vue';
 
 import { getEncodeStr } from '@/utils';
 import { useUserStore } from '@/store';
+import { useSettings } from '@/hooks';
 
 const $router = useRouter();
 const userStore = useUserStore();
-import { useSettings } from '@/hooks';
 const defaultSettings = useSettings();
 
 let form = ref();

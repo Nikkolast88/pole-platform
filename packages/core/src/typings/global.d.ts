@@ -7,6 +7,7 @@ interface Apps {
   activeRule: string;
 }
 interface Window {
+  qiankunStarted: boolean;
   manifest: {
     API: string;
     NAME: string;

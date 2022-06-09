@@ -15,7 +15,7 @@
         <div class="page-content">
           <div class="page-content-children">
             <div class="page-content-wrap">
-              <slot> </slot>
+              <slot></slot>
             </div>
           </div>
         </div>

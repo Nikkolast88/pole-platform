@@ -10,6 +10,7 @@ console.log(process.env.VUE_APP_PUBLIC_PATH);
 module.exports = defineConfig({
   publicPath: process.env.VUE_APP_PUBLIC_PATH,
   devServer: {
+    port: 8082,
     headers: {
       'Access-Control-Allow-Origin': '*',
     },

@@ -30,4 +30,5 @@ const constantRouter: Array<RouteRecordRaw> = [
  * @returns {Array<RouteRecordRaw>}
  */
 export const Layout = () => import('@/components/Layout/LayoutComp.vue');
+export const PortalComp = () => import('@/components/Portal/PortalComp.vue');
 export { constantRouter };

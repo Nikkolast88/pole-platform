@@ -1,3 +1,3 @@
 <template>
-  <div>System</div>
+  <div>Index</div>
 </template>

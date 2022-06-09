@@ -9,7 +9,7 @@
               size="300px"
               :showClose="false"
             >
-              <template #title>
+              <template #header>
                 <div class="">项目配置</div>
               </template>
               <div class="drawer-body">

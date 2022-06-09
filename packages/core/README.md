@@ -1,4 +1,4 @@
-# business
+# core
 
 ## Project setup
 ```

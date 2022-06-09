@@ -4,22 +4,24 @@
       <router-view></router-view>
     </template>
     <template v-else>
-      <Layout>
-        <div id="container"></div>
-      </Layout>
+      <div id="container"></div>
     </template>
   </el-config-provider>
 </template>
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, watchEffect } from 'vue';
 import { ElConfigProvider } from 'element-plus';
 import zhCn from 'element-plus/lib/locale/lang/zh-cn';
-import { Layout } from '@/components/Layout';
 import { useRoute } from 'vue-router';
 
 const locale = zhCn;
 const $route = useRoute();
+
+/** 用于判断是否放入Layout布局组件中 */
 const routeName = computed(() => $route.name);
+watchEffect(() => {
+  console.log(routeName.value);
+});
 </script>
 <style lang="scss">
 @import './styles/index';

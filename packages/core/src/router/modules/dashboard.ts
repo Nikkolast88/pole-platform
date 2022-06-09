@@ -7,6 +7,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/dashboard',
     name: 'Dashboard',
+    redirect: '/dashboard/index',
     component: Layout,
     meta: {
       title: '分析页',
@@ -21,6 +22,11 @@ const routes: Array<RouteRecordRaw> = [
           title: '分析页',
         },
       },
+      // {
+      //   path: '/business/*',
+      //   name: 'Business',
+      //   component: PortalComp,
+      // },
     ],
   },
 ];

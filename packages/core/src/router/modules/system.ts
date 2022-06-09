@@ -7,6 +7,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/system',
     name: 'System',
+    redirect: '/system/index',
     component: Layout,
     meta: {
       title: '系统管理',
