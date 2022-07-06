@@ -3,9 +3,13 @@ import fg from 'fast-glob';
 import path from 'path';
 import { execSync } from 'child_process';
 import fs from 'fs-extra';
+interface filesType {
+  name: string;
+  value: string;
+}
 export const readMetadata = async () => {
   const dirs = await fg(['packages/*/package.json'], {});
-  const files = [];
+  const files: filesType[] = [];
   for (const dir of dirs) {
     const { description } = fs.readJSONSync(dir);
     files.push({

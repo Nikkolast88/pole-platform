@@ -21,3 +21,7 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# yarn lock file and npm package lock file
+yarn.lock
+package-lock.json
