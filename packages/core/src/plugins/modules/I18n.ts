@@ -1,5 +1,5 @@
 import { App } from 'vue';
-import { createI18n, I18n } from 'vue-i18n';
+import { createI18n } from 'vue-i18n';
 import zhCN from '@/locales/zhCN';
 import enUS from '@/locales/enUS';
 
@@ -20,7 +20,7 @@ const messages = {
  * @param {*}
  * @return {*}
  */
-const i18n = createI18n<false>({
+const i18n = createI18n({
   legacy: false,
   locale: defaultSettings.menu && defaultSettings.menu.default,
   globalInjection: true,
@@ -81,8 +81,8 @@ export function getLanguage(): string {
  * @return {*}
  */
 
-export function setupI18n(app: App): I18n {
+export function setupI18n(app: App) {
   app.use(i18n);
-  return i18n;
+  // return i18n;
 }
 export default i18n.install;

@@ -1,12 +1,18 @@
 const { defineConfig } = require('@vue/cli-service');
 const { name } = require('./package.json');
 const { resolve } = require('path');
-const CompressionWebpackPlugin = require('compression-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const productionGzipExtensions = ['js', 'css'];
+// 动态修改webpack
+const { createWebpackScripts } = require('./build/scripts');
+// webpack插件
+const { createWebpackPlugins } = require('./build/plugins');
+// 默认配置
+const { defaultWebpack } = require('./build/constant');
+const { minimize } = require('./build/utils');
+const defaultConfig = defaultWebpack();
 
 module.exports = defineConfig({
   publicPath: process.env.VUE_APP_PUBLIC_PATH,
+  outputDir: defaultConfig.outputDir,
   devServer: {
     port: 8081,
     headers: {
@@ -22,6 +28,8 @@ module.exports = defineConfig({
     },
   },
   chainWebpack: (config) => {
+    // 添加到编译的资源中
+    createWebpackScripts(config, defaultConfig);
     config.resolve.alias.set('@', resolve('src'));
     config.resolve.alias.set('vue-i18n', 'vue-i18n/dist/vue-i18n.cjs.js');
   },
@@ -32,34 +40,7 @@ module.exports = defineConfig({
       libraryTarget: 'umd',
       chunkLoadingGlobal: `webpackJsonp_${name}`,
     },
-    plugins: [
-      require('unplugin-element-plus/webpack')({
-        useSource: true,
-      }),
-      new CompressionWebpackPlugin({
-        filename: '[path][base].gz',
-        algorithm: 'gzip',
-        test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),
-        threshold: 10240,
-        minRatio: 0.8,
-      }),
-    ],
-    optimization: {
-      minimize: true,
-      minimizer: [
-        new TerserPlugin({
-          terserOptions: {
-            ecma: undefined,
-            warnings: false,
-            parse: {},
-            compress: {
-              drop_debugger: true,
-              drop_console: true,
-              pure_funcs: ['console.log'],
-            },
-          },
-        }),
-      ],
-    },
+    plugins: createWebpackPlugins(),
+    optimization: minimize(),
   },
 });
