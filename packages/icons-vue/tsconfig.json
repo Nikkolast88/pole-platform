@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "declaration": true,
+    "baseUrl": ".",
+    "declarationDir": "./dist/types",
+    "strict": true,
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "jsx": "preserve",
+    "target": "ES2018",
+    "sourceMap": true,
+    "lib": ["ES2018", "DOM"],
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "types": []
+  },
+  "include": ["./src/**/*"],
+  "references": [{ "path": "./tsconfig.build.json" }] //该功能允许将项目的部分定义为单独的 TypeScript 模块。除其他外，这允许以不同方式配置这些模块，单独构建它们等,composite必须true
+}

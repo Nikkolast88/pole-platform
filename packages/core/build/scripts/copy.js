@@ -1,4 +1,5 @@
 const { resolve } = require('path');
+const { format } = require('prettier');
 const devConfig = require('../../config/config.dev');
 const prodConfig = require('../../config/config.dev');
 const stageConfig =
@@ -15,8 +16,14 @@ module.exports = {
         `../../${options.outputDir}/${options.manifestName}.js`,
       ),
       transform() {
+        const code = `window.${options.manifestName}=${JSON.stringify(
+          stageConfig,
+        )}`;
+        console.log(code);
         return Buffer.from(
-          `window.${options.manifestName}=${JSON.stringify(stageConfig)}`,
+          format(code, {
+            parser: 'typescript',
+          }),
         );
       },
     };

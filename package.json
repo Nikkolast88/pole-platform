@@ -13,7 +13,8 @@
     "prepare": "husky install",
     "commit": "set NODE_ENV=commit&&git add . && git-cz",
     "release": "standard-version",
-    "build": "esno ./scripts/build.ts create"
+    "build": "esno ./scripts/build.ts create",
+    "build:icons": "pnpm run -C ./packages/icons-vue build"
   },
   "main": "index.js",
   "dependencies": {
@@ -34,6 +35,7 @@
     "@commitlint/cz-commitlint": "^17.0.3",
     "@types/figlet": "^1.5.4",
     "@types/inquirer": "^8.2.1",
+    "@types/prettier": "^2.6.3",
     "@types/yargs": "^17.0.10",
     "@typescript-eslint/eslint-plugin": "^5.30.5",
     "@typescript-eslint/parser": "^5.30.5",
