@@ -1,7 +1,7 @@
 {
   "name": "@pole-platform/icons-vue",
   "version": "0.0.1",
-  "description": "",
+  "description": "icons Vue",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",

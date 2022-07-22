@@ -2,6 +2,7 @@
   "name": "@pole-platform/things",
   "version": "0.1.1",
   "description": "物联平台",
+  "isBuild": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",

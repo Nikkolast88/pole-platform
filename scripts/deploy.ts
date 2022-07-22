@@ -11,11 +11,13 @@ export const readMetadata = async () => {
   const dirs = await fg(['packages/*/package.json'], {});
   const files: filesType[] = [];
   for (const dir of dirs) {
-    const { description } = fs.readJSONSync(dir);
-    files.push({
-      name: dir.split('/')[1] + `(${description || '未知'})`,
-      value: dir.split('/')[1],
-    });
+    const { description, isBuild } = fs.readJSONSync(dir);
+    if (isBuild) {
+      files.push({
+        name: dir.split('/')[1] + `(${description || '未知'})`,
+        value: dir.split('/')[1],
+      });
+    }
   }
   return files;
 };
@@ -28,7 +30,6 @@ interface answerMeta {
   needs: string[];
 }
 export const setupDeploy = async (answer: answerMeta) => {
-  console.log('deploy', answer);
   const { root, needs, dir } = answer;
   /** 排除主应用后，获取需要打包的应用 */
   const dirs = needs.filter((item) => item !== answer.main);
