@@ -17,8 +17,5 @@
     </noscript>
     <div id="root"></div>
     <!-- built files will be auto injected -->
-    <% htmlWebpackPlugin.options.scripts.forEach(item => { %>
-    <script type="<%= item.type %>" src="<%= item.src %>"></script>
-    <% }) %>
   </body>
 </html>
