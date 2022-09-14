@@ -3,7 +3,7 @@ import { createI18n } from 'vue-i18n';
 import zhCN from '@/locales/zhCN';
 import enUS from '@/locales/enUS';
 
-export const loadedLanguages = ['zh-CN', 'en-US']; // 我们的预装默认语言
+export const loadedLanguages = ['zh-CN', 'en-US'] as const; // 我们的预装默认语言
 
 const messages = {
   'zh-CN': {
@@ -25,7 +25,7 @@ const i18n = createI18n({
   messages: messages,
 });
 
-export function setI18nLanguage(locale: string): void {
+export function setI18nLanguage(locale: typeof loadedLanguages[number]): void {
   i18n.global.locale.value = locale;
 
   /**
@@ -37,7 +37,9 @@ export function setI18nLanguage(locale: string): void {
    */
   document.querySelector('html')?.setAttribute('lang', locale);
 }
-export async function loadLanguageAsync(locale: string): Promise<void> {
+export async function loadLanguageAsync(
+  locale: typeof loadedLanguages[number],
+): Promise<void> {
   // 如果语言相同
   if (i18n.global.locale.value === locale) {
     return Promise.resolve(setI18nLanguage(locale));
