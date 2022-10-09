@@ -16,7 +16,6 @@ module.exports = {
           : Object.assign(prodConf, devConf);
 
       const manifest = flattenObject(config);
-      console.log(manifest);
       return manifest;
     };
 

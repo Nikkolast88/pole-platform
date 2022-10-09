@@ -5,7 +5,6 @@
 import { start } from 'qiankun';
 import { onMounted } from 'vue';
 onMounted(() => {
-  debugger;
   if (!window.qiankunStarted) {
     window.qiankunStarted = true;
     start();
