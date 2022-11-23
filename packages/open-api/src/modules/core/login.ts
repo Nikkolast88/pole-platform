@@ -1,15 +1,9 @@
 import { useRequest } from '@/hooks';
 import { useAxios } from '@pole-platform/common';
 import { RequestOptions } from '@/hooks/useRequest';
-
-export function onLogin(options: RequestOptions) {
-  return useRequest(
-    {
-      path: '/login',
-      method: 'post',
-    },
-    options,
-  );
+import axios from 'axios';
+export function onLogin() {
+  return axios.post('');
 }
 
-useAxios(0);
+const { data } = useAxios(onLogin);

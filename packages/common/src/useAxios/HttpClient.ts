@@ -19,7 +19,7 @@ export interface ApiConfig<SecurityDataType = unknown>
   format?: ResponseType;
 }
 
-export type QueryParamsType = Record<string | number, unknown>;
+export type QueryParamsType = Record<string | number, any>;
 
 export interface FullRequestParams
   extends Omit<AxiosRequestConfig, 'data' | 'params' | 'url' | 'responseType'> {
@@ -38,7 +38,7 @@ export interface FullRequestParams
   body?: unknown;
 }
 
-class AxiosClient<SecurityDataType = unknown> {
+class HttpClient<SecurityDataType = unknown> {
   public instance: AxiosInstance;
   private securityData: SecurityDataType | null = null;
   private securityWorker?: ApiConfig<SecurityDataType>['securityWorker'];
@@ -53,7 +53,8 @@ class AxiosClient<SecurityDataType = unknown> {
   }: ApiConfig<SecurityDataType> = {}) {
     this.instance = axios.create({
       ...axiosConfig,
-      baseURL: axiosConfig.baseURL || 'http://localhost:3000',
+      baseURL:
+        axiosConfig.baseURL || 'http://58.250.71.201:18008/lamp-solution',
     });
     this.secure = secure;
     this.format = format;
@@ -71,21 +72,21 @@ class AxiosClient<SecurityDataType = unknown> {
    * @param {AxiosRequestConfig} params1
    * @param {AxiosRequestConfig} [params2]
    * @return {*}  {AxiosRequestConfig}
-   * @memberof AxiosClient
+   * @memberof HttpClient
    */
   private mergeRequestParams(
     params1: AxiosRequestConfig,
     params2?: AxiosRequestConfig,
   ): AxiosRequestConfig {
     return {
-      ...this.instance.defaults.headers,
+      ...this.instance.defaults,
       ...params1,
-      ...params2,
-      // headers: {
-      //   ...(this.instance.defaults.headers || {}),
-      //   ...(params1.headers || {}),
-      //   ...((params2 && params2.headers) || {}),
-      // },
+      ...(params2 || {}),
+      headers: {
+        ...(this.instance.defaults.headers || {}),
+        ...(params1.headers || {}),
+        ...((params2 && params2.headers) || {}),
+      },
     };
   }
 
@@ -95,7 +96,7 @@ class AxiosClient<SecurityDataType = unknown> {
    * @private
    * @param {Record<string, unknown>} input
    * @return {*}  {FormData}
-   * @memberof AxiosClient
+   * @memberof HttpClient
    */
   private createFormData(input: Record<string, unknown>): FormData {
     return Object.keys(input || {}).reduce((formData, key) => {
@@ -118,13 +119,13 @@ class AxiosClient<SecurityDataType = unknown> {
    * @private
    * @param {QueryParamsType} input
    * @return {*}  {string}
-   * @memberof AxiosClient
+   * @memberof HttpClient
    */
   private createQueryParams(input: QueryParamsType): string {
     return qs.stringify(input);
   }
 
-  public request = async <T = unknown>({
+  public request = async <T = any>({
     secure,
     path,
     type,
@@ -146,12 +147,11 @@ class AxiosClient<SecurityDataType = unknown> {
       type === ContentType.FormData &&
       body &&
       body !== null &&
-      typeof body === 'object' &&
-      requestParams.headers
+      typeof body === 'object'
     ) {
-      // requestParams.headers.common = '{ Accept: */* }';
-      requestParams.headers.post = undefined;
-      requestParams.headers.put = undefined;
+      requestParams.headers.common = { Accept: '*/*' };
+      requestParams.headers.post = {};
+      requestParams.headers.put = {};
 
       body = this.createFormData(body as Record<string, unknown>);
     }
@@ -174,4 +174,4 @@ class AxiosClient<SecurityDataType = unknown> {
   };
 }
 
-export default new AxiosClient();
+export default new HttpClient();

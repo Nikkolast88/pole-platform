@@ -33,16 +33,24 @@ export default class Fetch<TData, TParams extends any[] = any> {
     this.setUpdataData(this.state);
   }
 
-  async runAsync(params: TParams): Promise<TData> {
+  async runAsync(...params: TParams): Promise<TData> {
     try {
-      let servicePromise = '';
-      if (!servicePromise) {
-        servicePromise = this.serviceRef.value
-      }
-    } catch (error) {
+      // let servicePromise: TData;
+      // if (!servicePromise) {
+      const servicePromise = this.serviceRef.value(...params);
+      // }
 
+      const res = await servicePromise;
+
+      // 请求成功
+      this.options.onSuccess?.(res, params);
+      return res;
+    } catch (error) {
+      this.options.onError?.(error as Error, params);
+
+      throw error;
     }
-  };
+  }
 
   cancel() {
     this.setState({

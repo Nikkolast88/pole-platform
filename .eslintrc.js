@@ -31,5 +31,6 @@ module.exports = {
     'no-undef': 'off', // vue文件识别不到命名空间
     'no-console': process.env.NODE_ENV === 'commit' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'commit' ? 'error' : 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
   },
 };
