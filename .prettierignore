@@ -9,7 +9,7 @@ package.json
 AUTHORS.txt
 lib/
 es/
-dist/
+dist
 _site/
 coverage/
 CNAME

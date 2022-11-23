@@ -1,4 +1,5 @@
 import { useRequest } from '@/hooks';
+import { useAxios } from '@pole-platform/common';
 import { RequestOptions } from '@/hooks/useRequest';
 
 export function onLogin(options: RequestOptions) {
@@ -10,3 +11,5 @@ export function onLogin(options: RequestOptions) {
     options,
   );
 }
+
+useAxios(0);

@@ -19,6 +19,10 @@
     {
       "filename": "packages/icons-vue/package.json",
       "type": "json"
+    },
+    {
+      "filename": "packages/common/package.json",
+      "type": "json"
     }
   ],
   "packageFiles": [
@@ -40,6 +44,10 @@
     },
     {
       "filename": "packages/icons-vue/package.json",
+      "type": "json"
+    },
+    {
+      "filename": "packages/common/package.json",
       "type": "json"
     }
   ]
