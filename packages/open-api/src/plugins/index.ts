@@ -8,6 +8,7 @@ export interface registerOptions {
   request: (config: AxiosRequestConfig) => AxiosRequestConfig;
   response?: (err: AxiosError) => void;
 }
+// 地址可以重设，拦截器也可重设，解决多请求服务问题
 export function registerAxiosClient(options: registerOptions) {
   AxiosClient.instance.defaults.baseURL = options.baseURL;
   AxiosClient.instance.defaults.timeout = options.timeout;
@@ -24,3 +25,5 @@ export function registerAxiosClient(options: registerOptions) {
     return Promise.reject(error);
   });
 }
+
+export { AxiosClient };
