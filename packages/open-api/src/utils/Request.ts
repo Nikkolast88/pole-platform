@@ -1,22 +1,23 @@
 import { useRequest } from '@/hooks';
 import { AxiosClient } from '@/plugins';
-import { AxiosResponse } from 'axios';
-import { ApiBody, ContentType, FullRequestParams } from '@/plugins/Axios/types';
+import { ContentType, FullRequestParams, TBody } from '@/plugins/Axios/types';
 
 type RequestParams<T> = FullRequestParams & {
   params?: T;
   body?: T;
 };
 
-// AxiosClient.request<TBody>({
-//   ...requestParams,
-// }),
-export function request<TQuery, TBody>(requestParams: RequestParams<TQuery>) {
-  return useRequest<TQuery, TBody>(
-    AxiosClient.request<TBody>({
-      ...requestParams,
-    }),
-  );
+export function request<TParams, TData>(requestParams: RequestParams<TParams>) {
+  // return useRequest<TParams, TBody>((requestParams) => {
+  //   return AxiosClient.request<TBody>({ ...requestParams });
+  // });
+  // return AxiosClient.request<TBody>({
+  //   ...requestParams,
+  //   body: requestParams.method === 'post' || requestParams.body,
+  // });
+  return useRequest<TParams, TData>(() => {
+    return AxiosClient.request<TData>({ ...requestParams });
+  });
 }
 
 interface Text {
@@ -30,14 +31,13 @@ interface BodyText {
 function canUseInfo(params: Text) {
   return request<Text, BodyText>({
     path: '',
-    body: params,
+    method: 'get',
     params: params,
     type: ContentType.Json,
   });
 }
 
 canUseInfo({ id: 0 }).then((resp) => {
-  console.log(resp.data.body.id);
+  const { body } = resp.data;
+  console.log(body);
 });
-
-useRequest();

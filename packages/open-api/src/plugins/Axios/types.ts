@@ -1,4 +1,4 @@
-import { AxiosRequestConfig, ResponseType } from 'axios';
+import { AxiosRequestConfig, ResponseType, AxiosResponse } from 'axios';
 export enum ContentType {
   Json = 'application/json',
   FormData = 'multipart/form-data',
@@ -37,4 +37,8 @@ export interface ApiBody<T> {
   msg: string;
   body: T;
   timestamp: string;
+}
+
+export interface TBody<T> extends AxiosResponse {
+  data: ApiBody<T>;
 }

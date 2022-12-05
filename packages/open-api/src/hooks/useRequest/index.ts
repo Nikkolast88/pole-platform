@@ -1,9 +1,7 @@
-import { AxiosResponse } from 'axios';
-import { ApiBody } from 'src/plugins/Axios/types';
-import { Service, AxiosService } from './types';
+import { Service } from './types';
 
-export function useRequest<TParams, TData>(
-  service: Promise<AxiosResponse<ApiBody<TData>, TData>>,
-): Promise<AxiosResponse<ApiBody<TData>, TData>> {
-  return service();
+export function useRequest<TParams, TData>(service: Service<TParams, TData>) {
+  // eslint-disable-next-line prefer-rest-params
+  const normalArray = Array.prototype.slice.call(arguments);
+  return service(normalArray as TParams);
 }

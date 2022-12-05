@@ -1,9 +1,4 @@
-import axios, {
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-  ResponseType,
-} from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, ResponseType } from 'axios';
 import qs from 'qs';
 
 import {
@@ -11,7 +6,7 @@ import {
   ApiConfig,
   QueryParamsType,
   FullRequestParams,
-  ApiBody,
+  TBody,
 } from './types';
 
 class AxiosClient<SecurityDataType = unknown> {
@@ -109,7 +104,7 @@ class AxiosClient<SecurityDataType = unknown> {
     body,
     method,
     ...params
-  }: FullRequestParams): Promise<AxiosResponse<ApiBody<T>>> => {
+  }: FullRequestParams): Promise<TBody<T>> => {
     const secureParams =
       ((typeof secure === 'boolean' ? secure : this.secure) &&
         this.securityWorker &&

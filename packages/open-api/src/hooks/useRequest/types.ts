@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { ApiBody } from 'src/plugins/Axios/types';
+import { ApiBody, TBody } from 'src/plugins/Axios/types';
 export interface UseRequestOptions<R = unknown> {
   onSuccess: (data: R) => void; // 成功回调
   onError: (e: Error) => void; // 失败回调
@@ -11,5 +11,6 @@ export interface UseRequestOptions<R = unknown> {
   pollingWhenHidden: boolean; // 屏幕隐藏时，停止轮询
 }
 
-export type Service<TParams, TData> = (params: TParams) => Promise<TData>;
-export type AxiosService<TData, any> = () => Promise<TData>;
+export type Service<TParams, TData> = (
+  params: TParams,
+) => Promise<TBody<TData>>;
