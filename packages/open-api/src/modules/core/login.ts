@@ -1,9 +1,19 @@
-import { useRequest } from '@/hooks';
-import { useAxios } from '@pole-platform/common';
-import { RequestOptions } from '@/hooks/useRequest';
-import axios from 'axios';
-export function onLogin() {
-  return axios.post('');
+import { ContentType } from '@/plugins/Axios/types';
+import { request } from '@/utils/Request';
+
+interface Text {
+  id: number;
 }
 
-const { data } = useAxios(onLogin);
+interface BodyText {
+  id: number;
+}
+
+export function canUseInfo(params: Text) {
+  return request<Text, BodyText>({
+    path: '',
+    method: 'get',
+    params: params,
+    type: ContentType.Json,
+  });
+}

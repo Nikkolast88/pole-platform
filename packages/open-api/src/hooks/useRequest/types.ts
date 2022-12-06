@@ -1,5 +1,4 @@
-import { AxiosResponse } from 'axios';
-import { ApiBody, TBody } from 'src/plugins/Axios/types';
+import { TBody } from 'src/plugins/Axios/types';
 export interface UseRequestOptions<R = unknown> {
   onSuccess: (data: R) => void; // 成功回调
   onError: (e: Error) => void; // 失败回调
