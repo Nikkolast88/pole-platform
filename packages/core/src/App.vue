@@ -13,6 +13,12 @@ import { computed, watchEffect } from 'vue';
 import { ElConfigProvider } from 'element-plus';
 import zhCn from 'element-plus/lib/locale/lang/zh-cn';
 import { useRoute } from 'vue-router';
+import { canUseInfo } from '@pole-platform/open-api';
+
+canUseInfo({ id: 1 }).then((resp) => {
+  console.log(resp.data);
+});
+
 const locale = zhCn;
 const $route = useRoute();
 /** 用于判断是否放入Layout布局组件中 */

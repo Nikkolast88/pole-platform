@@ -2,18 +2,31 @@
   "name": "@pole-platform/open-api",
   "version": "0.0.1",
   "description": "接口OpenApi",
-  "main": "src/index.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "type": "tsc -d"
+    "build": "npx unbuild"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
-  "dependencies": {
-    "@pole-platform/common": "workspace:^0.0.1"
-  },
   "peerDependencies": {
     "axios": "*"
+  },
+  "dependencies": {
+    "@pole-platform/common": "workspace:*"
   }
 }

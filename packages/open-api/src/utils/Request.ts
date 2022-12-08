@@ -1,13 +1,16 @@
 import { useRequest } from '@/hooks';
 import { AxiosClient } from '@/plugins';
-import { ContentType, FullRequestParams } from '@/plugins/Axios/types';
+import { ContentType } from '@/plugins/Axios/types';
+import type { FullRequestParams, TBody } from '@/plugins/Axios/types';
 
 type RequestParams<T> = FullRequestParams & {
   params?: T;
   body?: T;
 };
 
-export function request<TParams, TData>(requestParams: RequestParams<TParams>) {
+export function request<TParams, TData>(
+  requestParams: RequestParams<TParams>,
+): Promise<TBody<TData>> {
   return useRequest<TParams, TData>(() => {
     return AxiosClient.request<TData>({ ...requestParams });
   });

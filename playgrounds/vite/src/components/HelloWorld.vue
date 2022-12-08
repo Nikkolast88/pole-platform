@@ -1,10 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { canUseInfo } from '@pole-platform/open-api';
-
-canUseInfo().then((resp) => {
-  console.log(resp);
-});
 
 defineProps<{ msg: string }>();
 
