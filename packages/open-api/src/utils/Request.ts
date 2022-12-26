@@ -1,39 +1,23 @@
 import { useRequest } from '@/hooks';
-import { AxiosClient } from '@/plugins';
-import { ContentType } from '@/plugins/Axios/types';
-import type { FullRequestParams, TBody } from '@/plugins/Axios/types';
+import { request } from '@/plugins';
 
-type RequestParams<T> = FullRequestParams & {
-  params?: T;
-  body?: T;
-};
+import type { UseRequestOptions, Plugin } from '@/hooks';
 
-export function request<TParams, TData>(
-  requestParams: RequestParams<TParams>,
-): Promise<TBody<TData>> {
-  return useRequest<TParams, TData>(() => {
-    return AxiosClient.request<TData>({ ...requestParams });
-  });
+export function requestService<TData, TParams = unknown>(
+  requestParams,
+  options?: UseRequestOptions<TData, TParams, unknown>,
+  plugins?: Plugin<TData, TParams>[] = [],
+) {
+  const controller = new AbortController();
+  const fn = () =>
+    request<TData>(requestParams.path, {
+      ...requestParams,
+      signal: controller.signal,
+    });
+  const serviceOptions = {
+    ...options,
+    controller: controller,
+    defaultParams: requestParams,
+  };
+  return useRequest<TData, TParams>(fn, serviceOptions);
 }
-
-interface Text {
-  id: number;
-}
-
-interface BodyText {
-  id: number;
-}
-
-function canUseInfo(params: Text) {
-  return request<Text, BodyText>({
-    path: '',
-    method: 'get',
-    params: params,
-    type: ContentType.Json,
-  });
-}
-
-canUseInfo({ id: 0 }).then((resp) => {
-  const { body } = resp.data;
-  console.log(body.id);
-});

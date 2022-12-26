@@ -1,10 +1,16 @@
 <script setup lang="ts">
-import { canUseInfo } from '@pole-platform/open-api';
+import { registerAxiosClient, canUseInfo } from '@pole-platform/open-api';
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 import HelloWorld from './components/HelloWorld.vue';
-canUseInfo({ id: 1 }).then((resp) => {
-  console.log(resp.data.body.id);
+
+registerAxiosClient({
+  baseURL: 'https://192.168.49.217',
+});
+let msg;
+canUseInfo().then((resp) => {
+  console.log(resp.data);
+  const { runAsync } = resp;
 });
 </script>
 
@@ -16,6 +22,7 @@ canUseInfo({ id: 1 }).then((resp) => {
     <a href="https://vuejs.org/" target="_blank">
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
+    <div class="msg">{{ msg }}</div>
   </div>
   <HelloWorld msg="Vite + Vue" />
 </template>

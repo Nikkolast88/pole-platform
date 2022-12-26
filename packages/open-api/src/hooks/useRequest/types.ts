@@ -1,15 +1,53 @@
-import { TBody } from 'src/plugins/Axios/types';
-export interface UseRequestOptions<R = unknown> {
-  onSuccess: (data: R) => void; // 成功回调
-  onError: (e: Error) => void; // 失败回调
-  onFinally: () => void; // finally回调
-  initialData: R;
-  defaultLoading: boolean; // 默认加载状态
-  pollingInterval: number; // 轮询时间
-  pollingSinceLastFinished: boolean; // 轮询时间是否是上一次结束时间
-  pollingWhenHidden: boolean; // 屏幕隐藏时，停止轮询
+import { Ref } from 'vue';
+import Fetch from './Fetch';
+
+export type UseRequestOptions<TData, TParams, TPlugin> = {
+  [K in keyof TPlugin]: TPlugin[K];
+} & {
+  defaultParams?: TParams;
+  controller?: AbortController;
+
+  // 轮询
+  pollingInterval?: number | Ref<number>;
+  pollingWhenHidden?: boolean;
+
+  // 错误重试
+  retryCount?: number;
+  retryInterval?: number;
+
+  [x: string]: unknown;
+};
+
+export type Service<TData, TParams> = (params: TParams) => Promise<TData>;
+
+export interface FetchState<TData, TParams> {
+  params?: TParams;
+  data?: TData;
+  header?: unknown;
 }
 
-export type Service<TParams, TData> = (
-  params: TParams,
-) => Promise<TBody<TData>>;
+export type Plugin<TData, TParams, TPlugin = unknown> = {
+  (
+    fetchInstance: Fetch<TData, TParams>,
+    options: UseRequestOptions<TData, TParams, TPlugin>,
+  ): PluginReturn;
+};
+
+/**
+ * 插件返回
+ */
+export interface PluginReturn {
+  onBefore?: () => void;
+  onSuccess?: () => void;
+  onError?: () => void;
+  onFinally?: () => void;
+}
+
+export interface Result<TData, TParams> {
+  data: Ref<TData | undefined>;
+  runAsync: Fetch<TData, TParams>['runAsync'];
+}
+
+export type Timeout = ReturnType<typeof setTimeout>;
+
+export type Interval = ReturnType<typeof setInterval>;

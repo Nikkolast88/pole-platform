@@ -2,9 +2,11 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "strict": false,
+    "allowSyntheticDefaultImports": true,
     "paths": {
       "@/*": ["../../packages/open-api/src/*"]
     }
   },
-  "include": ["."]
+  "include": [".", "./build.config.ts"]
 }

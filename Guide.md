@@ -243,6 +243,8 @@ Vue3，因采用setup，组件name要想定义的话，需要另起script块，�
     将 git 的 autocrlf 功能设置为 false，并把 eol（end of line）设置为lf，再重新clone一下代码就可以了。
     3、vscode中，搜索Files:EOL为LF。
     4、代码中不会提示，看是否全局安装typescript, npm  install -g typescript
+    5、多应用开发期间，如果修改了声明文件，vscode并不会立即刷新，需要重启一下宿主，Ctrl+Shift+P，敲restart，重启宿主。
+    6、如果packages下项目报path找不到，需要在tsconfig.json添加types:["node"]
     ```
 
 ## 版本发布

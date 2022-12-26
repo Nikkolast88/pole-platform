@@ -1,19 +1,12 @@
-import { ContentType } from '@/plugins/Axios/types';
-import { request } from '@/utils/Request';
+import { requestService } from '@/utils/request';
+import { ContentType } from '@/plugins/axios/types';
 
-interface Text {
-  id: number;
-}
+import type { BodyText } from './types';
 
-interface BodyText {
-  id: number;
-}
-
-export function canUseInfo(params: Text) {
-  return request<Text, BodyText>({
-    path: '',
-    method: 'get',
-    params: params,
+export function canUseInfo() {
+  return requestService<BodyText>({
+    path: '/iot-api/login/getVerifyImg',
+    method: 'post',
     type: ContentType.Json,
   });
 }

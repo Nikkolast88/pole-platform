@@ -2,7 +2,6 @@
   "name": "@pole-platform/open-api",
   "version": "0.0.1",
   "description": "接口OpenApi",
-  "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -24,9 +23,14 @@
   "author": "",
   "license": "MIT",
   "peerDependencies": {
-    "axios": "*"
+    "axios": "*",
+    "qs": "*",
+    "vue": "^3.2.45"
   },
   "dependencies": {
     "@pole-platform/common": "workspace:*"
+  },
+  "devDependencies": {
+    "vue": "^3.2.45"
   }
 }
