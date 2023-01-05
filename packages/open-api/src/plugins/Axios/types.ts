@@ -42,3 +42,9 @@ export interface ApiBody<T> {
 export interface TBody<T> extends AxiosResponse {
   data: ApiBody<T>;
 }
+
+export interface ResponseResult<T> {
+  data: T;
+  header: Partial<Record<string, string> & { 'set-cookie'?: string[] }>;
+  msg: string;
+}

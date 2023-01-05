@@ -35,21 +35,23 @@ export default class Fetch<TData, TParams> {
     return Object.assign({}, ...r);
   }
 
-  async runAsync(params: TParams): Promise<TData> {
+  async runAsync(params?: TParams): Promise<TData> {
     this.runPluginHandler('onBefore', params);
 
     try {
       const servicePromise = this.serviceRef.value(params);
-      const res = await servicePromise;
+      const res: any = await servicePromise;
 
-      this.runPluginHandler('onSuccess', res, params);
+      const result = {
+        ...res,
+      };
+
+      this.runPluginHandler('onSuccess', result, params);
 
       this.runPluginHandler('onFinally', params);
 
-      this.setState({
-        data: res,
-      });
-      return res;
+      this.setState(result);
+      return result;
     } catch (error) {
       this.runPluginHandler('onError', error, params);
 

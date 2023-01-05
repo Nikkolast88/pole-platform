@@ -47,18 +47,18 @@
                 <menu-fold-one
                   theme="outline"
                   size="24"
-                  :strokeWidth="3"
-                  strokeLinejoin="bevel"
-                  strokeLinecap="square"
+                  :stroke-width="3"
+                  stroke-linejoin="bevel"
+                  stroke-linecap="square"
                 />
               </template>
               <template v-else>
                 <menu-unfold-one
                   theme="outline"
                   size="24"
-                  :strokeWidth="3"
-                  strokeLinejoin="bevel"
-                  strokeLinecap="square"
+                  :stroke-width="3"
+                  stroke-linejoin="bevel"
+                  stroke-linecap="square"
                 />
               </template>
             </span>
@@ -139,18 +139,18 @@
                 <menu-fold-one
                   theme="outline"
                   size="24"
-                  :strokeWidth="3"
-                  strokeLinejoin="bevel"
-                  strokeLinecap="square"
+                  :stroke-width="3"
+                  stroke-linejoin="bevel"
+                  stroke-linecap="square"
                 />
               </template>
               <template v-else>
                 <menu-unfold-one
                   theme="outline"
                   size="24"
-                  :strokeWidth="3"
-                  strokeLinejoin="bevel"
-                  strokeLinecap="square"
+                  :stroke-width="3"
+                  stroke-linejoin="bevel"
+                  stroke-linecap="square"
                 />
               </template>
             </span>
@@ -235,6 +235,31 @@ const navBgColor = computed(() => {
   position: relative;
   background-color: #fff;
 
+  &-links {
+    width: 100%;
+    color: #333;
+
+    &-menu {
+      height: 40px;
+      margin-top: 4px;
+      margin-bottom: 4px;
+      padding-left: 16px;
+      line-height: 40px;
+      border-top: 1px solid #f0f0f0;
+      cursor: pointer;
+    }
+  }
+
+  .aside-anticon {
+    font-size: 16px;
+  }
+
+  .aside-title {
+    margin-left: 10px;
+    font-weight: 500;
+    font-size: 14px;
+  }
+
   .el-menu {
     border-right-color: transparent;
 
@@ -314,31 +339,6 @@ const navBgColor = computed(() => {
     height: 100%;
     margin-top: -0.1px;
     padding-top: 0.1px;
-  }
-
-  &-links {
-    width: 100%;
-    color: #333;
-
-    &-menu {
-      height: 40px;
-      margin-top: 4px;
-      margin-bottom: 4px;
-      padding-left: 16px;
-      line-height: 40px;
-      border-top: 1px solid #f0f0f0;
-      cursor: pointer;
-    }
-  }
-
-  .aside-anticon {
-    font-size: 16px;
-  }
-
-  .aside-title {
-    margin-left: 10px;
-    font-weight: 500;
-    font-size: 14px;
   }
 
   &.aside-collapse {

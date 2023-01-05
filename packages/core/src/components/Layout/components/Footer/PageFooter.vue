@@ -45,7 +45,7 @@
       text-align: center;
       text-transform: none;
       vertical-align: -0.125em;
-      text-rendering: optimizeLegibility;
+      text-rendering: optimizelegibility;
     }
   }
 }

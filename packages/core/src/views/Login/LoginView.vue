@@ -17,15 +17,15 @@
         >
           <el-form-item label="用户名" prop="loginName">
             <el-input
-              class="block-input"
               v-model="formState.loginName"
+              class="block-input"
               placeholder="请输入用户名"
             ></el-input>
           </el-form-item>
           <el-form-item label="密码" prop="authPass">
             <el-input
-              class="block-input"
               v-model="formState.authPass"
+              class="block-input"
               :type="state.passwordType"
               placeholder="请输入密码"
             >
@@ -66,8 +66,8 @@
             <el-button
               class="block-button"
               type="primary"
-              @click="onLogIn"
               style="width: 100%"
+              @click="onLogIn"
               >{{ $t('user.signup') }}</el-button
             >
           </el-form-item>

@@ -7,7 +7,7 @@
             <el-drawer
               v-model="state.drawerVisible"
               size="300px"
-              :showClose="false"
+              :show-close="false"
             >
               <template #header>
                 <div class="">项目配置</div>
@@ -24,8 +24,8 @@
                         <div>
                           <div class="check-layout"></div>
                           <span
-                            class="check-dot"
                             v-show="defaultSettings.navTheme === 'light'"
+                            class="check-dot"
                           ></span>
                         </div>
                       </el-tooltip>
@@ -38,8 +38,8 @@
                         <div>
                           <div class="check-layout"></div>
                           <span
-                            class="check-dot"
                             v-show="defaultSettings.navTheme === 'dark'"
+                            class="check-dot"
                           ></span>
                         </div>
                       </el-tooltip>
@@ -62,7 +62,7 @@
                           <template
                             v-if="item.color === defaultSettings.primaryColor"
                           >
-                            <Check size="18" :strokeWidth="4" />
+                            <Check size="18" :stroke-width="4" />
                           </template>
                         </div>
                       </el-tooltip>
@@ -80,8 +80,8 @@
                         <div>
                           <div class="check-layout"></div>
                           <span
-                            class="check-dot"
                             v-show="defaultSettings.layout === 'side'"
+                            class="check-dot"
                           ></span>
                         </div>
                       </el-tooltip>
@@ -94,8 +94,8 @@
                         <div>
                           <div class="check-layout"></div>
                           <span
-                            class="check-dot"
                             v-show="defaultSettings.layout === 'top'"
+                            class="check-dot"
                           ></span>
                         </div>
                       </el-tooltip>
@@ -108,8 +108,8 @@
                         <div>
                           <div class="check-layout"></div>
                           <span
-                            class="check-dot"
                             v-show="defaultSettings.layout === 'mix'"
+                            class="check-dot"
                           ></span>
                         </div>
                       </el-tooltip>
@@ -184,9 +184,9 @@
                 theme="outline"
                 size="24"
                 fill="#fff"
-                :strokeWidth="3"
-                strokeLinejoin="bevel"
-                strokeLinecap="square"
+                :stroke-width="3"
+                stroke-linejoin="bevel"
+                stroke-linecap="square"
               />
             </template>
             <template v-else>
@@ -194,9 +194,9 @@
                 theme="outline"
                 size="24"
                 fill="#fff"
-                :strokeWidth="3"
-                strokeLinejoin="bevel"
-                strokeLinecap="square"
+                :stroke-width="3"
+                stroke-linejoin="bevel"
+                stroke-linecap="square"
               />
             </template>
           </div>
@@ -327,7 +327,7 @@ const onThemeLayout = (layout: 'side' | 'top' | 'mix') => {
           width: 100%;
           height: 25%;
           background-color: #fff;
-          content: '';
+          content: "''";
         }
       }
 
@@ -356,38 +356,6 @@ const onThemeLayout = (layout: 'side' | 'top' | 'mix') => {
       width: 44px;
       margin-right: 16px;
 
-      .check-layout {
-        position: relative;
-        width: 44px;
-        height: 36px;
-        margin-right: 16px;
-        overflow: hidden;
-        background-color: #f0f2f5;
-        border-radius: 4px;
-        box-shadow: 0 1px 2.5px 0 rgb(0 0 0 / 18%);
-        cursor: pointer;
-
-        &::before {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 33%;
-          height: 100%;
-          background-color: #fff;
-          content: '';
-        }
-
-        &::after {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 25%;
-          background-color: #fff;
-          content: '';
-        }
-      }
-
       &.mode-side {
         .check-layout {
           &::before {
@@ -405,7 +373,7 @@ const onThemeLayout = (layout: 'side' | 'top' | 'mix') => {
 
           &::before {
             background-color: transparent;
-            content: '';
+            content: "''";
           }
         }
       }

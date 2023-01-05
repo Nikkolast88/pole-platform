@@ -5,7 +5,7 @@
       <i class="el-icon-refresh" @click="refresh"></i>
     </div>
     <div class="main-img">
-      <div class="no-img" v-if="!imgurl">图片加载失败</div>
+      <div v-if="!imgurl" class="no-img">图片加载失败</div>
       <canvas ref="canvasStr" :width="w" :height="h" />
       <canvas
         ref="blockStr"
@@ -13,7 +13,7 @@
         :width="w"
         :height="h"
       />
-      <div class="slide-verify-info" v-if="state.showInfo">
+      <div v-if="state.showInfo" class="slide-verify-info">
         <i
           :class="{
             'el-icon-success ele_success': state.showInfo,
@@ -23,7 +23,7 @@
         {{ state.infoText }}
       </div>
     </div>
-    <div class="slide-verify-slider" v-if="imgurl">
+    <div v-if="imgurl" class="slide-verify-slider">
       <div
         class="slide-verify-slider-mask"
         :style="{ width: state.sliderMaskWidth }"

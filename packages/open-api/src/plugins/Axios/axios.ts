@@ -1,4 +1,5 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { ApiBody, ResponseResult } from './types';
 
 axios.defaults.headers.post['Content-Type'] =
   'application/x-www-form-urlencoded;charset=UTF-8';
@@ -37,14 +38,18 @@ axiosInstance.interceptors.response.use(
 const request = <ResponseType = unknown>(
   url: string,
   options?: AxiosRequestConfig<unknown>,
-): Promise<ResponseType> => {
+): Promise<ResponseResult<ResponseType>> => {
   return new Promise((resolve, reject) => {
     axiosInstance({
       url,
       ...options,
     })
-      .then((res) => {
-        resolve(res.data);
+      .then((res: AxiosResponse<ApiBody<ResponseType>>) => {
+        resolve({
+          data: res.data.body,
+          header: res.headers,
+          msg: res.data.msg,
+        });
       })
       .catch((err) => reject(err));
   });

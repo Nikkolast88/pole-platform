@@ -15,7 +15,7 @@ import zhCn from 'element-plus/lib/locale/lang/zh-cn';
 import { useRoute } from 'vue-router';
 import { canUseInfo } from '@pole-platform/open-api';
 
-canUseInfo({ id: 1 }).then((resp) => {
+canUseInfo().then((resp) => {
   console.log(resp.data);
 });
 
