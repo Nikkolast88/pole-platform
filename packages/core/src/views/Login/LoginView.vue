@@ -114,7 +114,7 @@ const onLogIn = () => {
         loginName: formState.loginName,
         verify: '',
       };
-      getUserLoginHandle(temp);
+      getUserLoginHandle();
     }
   });
 };
@@ -124,7 +124,7 @@ const onLogIn = () => {
  * @param {*}
  * @return {*}
  */
-const getUserLoginHandle = (temp: API.User.TLogin) => {
+const getUserLoginHandle = () => {
   // getUserLogin<DTO.User.TUser>(temp).then(async (resp) => {
   //   $router.push('/micro-sub');
   //   await userStore.setToken(resp.token);
