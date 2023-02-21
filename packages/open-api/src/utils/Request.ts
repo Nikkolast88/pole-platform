@@ -1,23 +1,23 @@
 import { useRequest } from '@/hooks';
 import { request } from '@/plugins';
 
-import type { UseRequestOptions, Plugin } from '@/hooks';
+import type { UseRequestOptions } from '@/hooks';
 
 export function requestService<TData, TParams = unknown>(
   requestParams,
   options?: UseRequestOptions<TData, TParams, unknown>,
-  plugins?: Plugin<TData, TParams>[] = [],
+  // plugins?: Plugin<TData, TParams>[] = [],
 ) {
-  const controller = new AbortController();
+  // const controller = new AbortController();
   const fn = () =>
     request<TData>(requestParams.path, {
       ...requestParams,
-      signal: controller.signal,
+      // signal: controller.signal,
     });
   const serviceOptions = {
     ...options,
-    controller: controller,
+    // controller: controller,
     defaultParams: requestParams,
   };
-  return useRequest<TData, TParams>(fn, serviceOptions);
+  return useRequest<TData, TParams>(fn as any, serviceOptions);
 }

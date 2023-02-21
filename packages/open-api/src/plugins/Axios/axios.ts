@@ -47,7 +47,6 @@ const request = <ResponseType = unknown>(
       .then((res: AxiosResponse<ApiBody<ResponseType>>) => {
         resolve({
           data: res.data.body,
-          header: res.headers,
           msg: res.data.msg,
         });
       })

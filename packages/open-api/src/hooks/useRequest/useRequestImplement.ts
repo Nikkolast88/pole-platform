@@ -10,10 +10,10 @@ function useRequestImplement<TData, TParams>(
 
   const state = reactive<{
     data?: TData;
-    header?: unknown;
+    headers?: unknown;
   }>({
     data: undefined,
-    header: undefined,
+    headers: undefined,
   });
 
   const setState = (s: any, field?: keyof typeof state) => {
@@ -27,7 +27,7 @@ function useRequestImplement<TData, TParams>(
   const fetchOptions = options;
 
   const fetchInstance = computed(() => {
-    return new Fetch<TData, TParams>(serviceRef, fetchOptions, setState);
+    return new Fetch<TData, TParams>(serviceRef, fetchOptions, setState as any);
   });
 
   fetchInstance.value.pluginImpls = plugins.map((p) => {

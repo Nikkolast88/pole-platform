@@ -9,8 +9,11 @@ registerAxiosClient({
 });
 let msg;
 canUseInfo().then((resp) => {
-  console.log(resp.data);
-  console.log(1);
+  const { runAsync } = resp;
+  runAsync().then((resp) => {
+    console.log('resp', resp);
+  });
+  console.log(resp);
 });
 </script>
 

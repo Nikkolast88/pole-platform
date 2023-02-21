@@ -10,3 +10,11 @@ export function canUseInfo() {
     type: ContentType.Json,
   });
 }
+
+export function canPromise() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve('123');
+    }, 1000);
+  });
+}

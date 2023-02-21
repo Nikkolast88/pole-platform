@@ -45,6 +45,6 @@ export interface TBody<T> extends AxiosResponse {
 
 export interface ResponseResult<T> {
   data: T;
-  header: Partial<Record<string, string> & { 'set-cookie'?: string[] }>;
+  header?: Partial<Record<string, string> & { 'set-cookie'?: string[] }>;
   msg: string;
 }

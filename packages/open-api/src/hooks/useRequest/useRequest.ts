@@ -1,4 +1,5 @@
 import usePollingPlugin from './plugins/usePollingPlugin';
+import useRetryPlugin from './plugins/useRetryPlugin';
 
 import useRequestImplement from './useRequestImplement';
 
@@ -16,6 +17,7 @@ function useRequest<
   return useRequestImplement<TData, TParams>(service, options, [
     ...(plugins || []),
     usePollingPlugin,
+    useRetryPlugin,
   ] as Plugin<TData, TParams>[]);
 }
 

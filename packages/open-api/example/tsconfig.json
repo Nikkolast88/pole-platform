@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    // ... 其他选项
+    "paths": {
+      "@/*": ["../../../packages/open-api/src/*"]
+    }
+  },
+  "include": ["."]
+}
